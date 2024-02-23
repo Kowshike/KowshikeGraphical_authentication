@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: url('/gpa/bg4.jpg');
+    background: url('/bg4.jpg');
     background-size: 60% auto; /* Adjust the percentage to control zoom level */
     display: flex;
     flex-direction: column;
