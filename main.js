@@ -8,25 +8,20 @@ signUpButton.addEventListener('click', () => {
     container.classList.add('right-panel-active');
 });
 
-
 signInButton.addEventListener('click', () => {
     container.classList.remove('right-panel-active');
 });
-// adding and removing border
+
+// Adding and removing border
 function upimg(element) {
     var Image = element.querySelector('img');
     if (Image) {
         if (Image.classList.contains('clicked')) {
             Image.classList.remove('clicked');
             uppass.splice(uppass.indexOf(element.id), 1);
-            // console.log(element.id);
-            // console.log(uppass);
-        }
-        else {
+        } else {
             Image.classList.add('clicked');
             uppass.push(element.id);
-            // console.log(element.id);
-            // console.log(uppass);
         }
     }
 }
@@ -37,71 +32,67 @@ function inimg(element) {
         if (Image.classList.contains('clicked')) {
             Image.classList.remove('clicked');
             inpass.splice(inpass.indexOf(element.id), 1);
-            // console.log(element.id);
-            // console.log(inpass);
-        }
-        else {
+        } else {
             Image.classList.add('clicked');
             inpass.push(element.id);
-            // console.log(element.id);
-            // console.log(inpass);
         }
     }
 }
-// element image recognition
+
+// Element image recognition
 function signup() {
-    sessionStorage.setItem("upname", document.getElementById('upmail').value);
-    sessionStorage.setItem("uppass", uppass);
-    var myText = "Account Created Succesfully";
+    sessionStorage.setItem('upname', document.getElementById('upmail').value);
+    sessionStorage.setItem('uppass', JSON.stringify(uppass));
+    var myText = 'Account Created Successfully';
     alert(myText);
 }
-// image pattern authentication
-var v2 = new Boolean(false);
+
+// Image pattern authentication
 function signin() {
     let str = document.getElementById('inmail').value;
-    let array = sessionStorage.getItem("uppass");
-    let check1 = array.localeCompare(inpass.toString());
-    if ((!str.localeCompare(sessionStorage.getItem("upname"))) && !check1) {
-        var myText = "Login is successful";
+    let array = sessionStorage.getItem('uppass');
+    let check1 = array.localeCompare(JSON.stringify(inpass));
+    
+    if (!str.localeCompare(sessionStorage.getItem('upname')) && !check1) {
+        var myText = 'Login is successful';
         alert(myText);
         NewTab();
-        
-    }
-    else{
-        var myText = "Login Failed";
+    } else {
+        var myText = 'Login Failed';
         alert(myText);
-   
         sendMail3();
-       
-
     }
 }
+
 function sendMail2() {
-    emailjs.send('service_7q1sn6s', 'template_ogw30ms')
+    emailjs
+        .send('service_7q1sn6s', 'template_ogw30ms')
         .then(function (res) {
-            console.log("Mail sent successfully:", res);
-            alert("Mail sent successfully");
+            console.log('Mail sent successfully:', res);
+            alert('Mail sent successfully');
         })
         .catch(function (error) {
-            console.error("Error sending mail:", error);
-            alert("Error sending mail");
+            console.error('Error sending mail:', error);
+            alert('Error sending mail');
         });
 }
 
 function sendMail3() {
-    emailjs.send('service_7q1sn6s', 'template_v7f98gs')
+    emailjs
+        .send('service_7q1sn6s', 'template_v7f98gs')
         .then(function (res) {
-            console.log("Mail sent successfully:", res);
-            alert("Mail sent successfully");
+            console.log('Mail sent successfully:', res);
+            alert('Mail sent successfully');
         })
         .catch(function (error) {
-            console.error("Error sending mail:", error);
-            alert("Error sending mail");
+            console.error('Error sending mail:', error);
+            alert('Error sending mail');
         });
 }
 
-
 function NewTab() {
     window.open(
-      "https://www.linkedin.com/in/kowshik-emmadisetty-3a7874248/", "_blank");
+        'https://www.linkedin.com/in/kowshik-emmadisetty-3a7874248/',
+        '_blank'
+    );
 }
